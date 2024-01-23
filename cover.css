@@ -50,6 +50,11 @@ body {
   max-width: 42em;
 }
 
+.displayImg {
+    width: 200px;
+    height: auto;
+}
+
 
 /*
  * Header
@@ -112,3 +117,4 @@ body {
 .mastfoot {
   color: rgba(255, 255, 255, .5);
 }
+

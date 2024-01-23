@@ -98,14 +98,12 @@ const plantData = {
     "Hawaii Palms": "Habitat loss and invasive species",
     "Oval-leafed Milkweeds": "Habitat loss and agriculture",
     "Catskill Witch Hazels": "Habitat loss and logging",
-    "Pig's Toes": "Habitat loss and urbanization",
     "Santa Cruz Cypresses": "Habitat loss and invasive species",
     "Carolina Heelsplitters": "Habitat loss and water pollution",
     "Poweshiek Skipperlings": "Habitat loss and agriculture",
     "Northern Riffleshells": "Habitat loss and water pollution",
     "Illinois Cave Amphipods": "Habitat loss and pollution",
     "Puget Blue Butterflies": "Habitat loss and urbanization",
-    "Ozark Chubs": "Habitat loss and water pollution",
     "Yadkin River Goldenrods": "Habitat loss and urbanization",
     "Yellowstone Sand Verbenas": "Habitat loss and invasive species",
   };
@@ -152,10 +150,9 @@ const plantData = {
     "kelp forest": "Example: California Kelp Forest (United States)",
     "monsoon forest": "Example: Sundarbans (India, Bangladesh)",
     "savanna": "Example: African Savanna"  
-  };  
+  };
   
-
-function randomizeWords() {
+function randomizeWordsAndImages() {
     randomizedWords = ["randomizedAnimal", "randomizedPlant", "randomizedEnvironment"]
     const dataDict = {
         "randomizedAnimal": animalData, 
@@ -167,14 +164,34 @@ function randomizeWords() {
     {
         const randomElement = document.getElementById(randomizedWord);
         const randomArray = Object.entries(dataDict[randomizedWord]);
-        console.log(randomArray);
+        //console.log(randomArray);
         // Randomly select an item
         const randomIndex = Math.floor(Math.random() * randomArray.length);
         const randomEntry = randomArray[randomIndex];
         const randomName = randomEntry[0];
         const randomReasonForRisk = randomName[1];
         randomElement.textContent = randomName;
-        
+        searchImages(randomName, randomizedWord +'Image');
     });
     
 }
+function searchImages(query,imageElement){
+    const apiKey = 'AIzaSyDsLHNXn0J4FSvehCc6LVkJPG0FlY94enI';
+    const cx = '91f1d802f0741445b';
+    //const query = 'cars';
+
+    const apiUrl = `https://www.googleapis.com/customsearch/v1?q=${query}&key=${apiKey}&cx=${cx}&searchType=image`;
+    const imageSearchElement = document.getElementById(imageElement);
+
+    // Make a GET request to the API
+    fetch(apiUrl) 
+        .then(response => response.json())
+        .then(data => {
+        // Process the data here
+        const firstItemLink = data.items && data.items.length > 0 ? data.items[0].link : null;
+        console.log(firstItemLink);
+        imageSearchElement.innerHTML = `<image class="displayImg" src="${firstItemLink}"</image>`
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+ 
