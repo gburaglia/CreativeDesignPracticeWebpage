@@ -1,3 +1,4 @@
+
 // script.js
 const animalData = {
     "Amur Leopards": "Habitat loss and poaching",
@@ -103,7 +104,7 @@ const plantData = {
     "Poweshiek Skipperlings": "Habitat loss and agriculture",
     "Northern Riffleshells": "Habitat loss and water pollution",
     "Illinois Cave Amphipods": "Habitat loss and pollution",
-    "Puget Blue Butterflies": "Habitat loss and urbanization",
+    "California Lilacs": "Habitat loss and urbanization",
     "Yadkin River Goldenrods": "Habitat loss and urbanization",
     "Yellowstone Sand Verbenas": "Habitat loss and invasive species",
   };
@@ -176,7 +177,8 @@ function randomizeWordsAndImages() {
     
 }
 function searchImages(query,imageElement){
-    const apiKey = 'AIzaSyDsLHNXn0J4FSvehCc6LVkJPG0FlY94enI';
+    const apiKey = window.envVars.API_KEY;
+    console.log(apiKey);
     const cx = '91f1d802f0741445b';
     //const query = 'cars';
 
