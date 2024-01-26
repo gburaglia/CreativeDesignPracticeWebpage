@@ -182,28 +182,29 @@ function searchImages(query,imageElement){
     const apiKey = 'AIzaSyA2r9b2k80iK72s55Jxgx0ALmwNMSYeIu0';
     const cx = '2135a8ac105674278';
    
-    var randomY = Math.floor(Math.random() * 50);
-    var randomX = Math.floor(Math.random() * 80);
-    if ((randomY-prevRandomY) < 30 && (randomX-prevRandomX) < 30)
-    {
-        randomX = randomX + 30
-    }
-    prevRandomY =randomY;
-    prevRandomX = randomX;
+    var randomOffset = Math.floor(Math.random() * 100);
+    
     const apiUrl = `https://www.googleapis.com/customsearch/v1?q=${query}&key=${apiKey}&cx=${cx}&searchType=image`;
     
 
     const imageSearchElement = document.getElementById(imageElement);    
 
+    imageSearchElement.src="https://www.colorhexa.com/333333.png";
+    
     // Make a GET request to the API
     fetch(apiUrl) 
         .then(response => response.json())
         .then(data => {
         // Process the data here
-        //const firstItemLink = data.items && data.items.length > 0 ? data.items[0].link : null;
-        imageSearchElement.innerHTML = `<image class="displayImg" style="top:${randomY}%; left:${randomX}%" src=""https://evfgxracv24.exactdn.com/wp-content/uploads/2021/02/franklinia-alatamaha_001.jpg?lossy=0"</image> <div class="overlay-text"><span>${query}</span></div>`
-        })
+        const firstItemLink = data.items && data.items.length > 0 ? data.items[0].link : null;
+        //imageSearchElement.innerHTML = `<image class="displayImg" style="top:${randomY}%; left:${randomX}%" src="${firstItemLink}</image> <div class="overlay-text"><span>${query}</span></div>`
+        imageSearchElement.src=`${firstItemLink}`;
+        imageSearchElement.style.offsetDistance =`${randomOffset}%`;
+    })
         .catch(error => console.error('Error fetching data:', error));
+    
+
         
+
 }
  
