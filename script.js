@@ -192,7 +192,7 @@ function searchImages(query,imageElement){
         // Process the data here
         const firstItemLink = data.items && data.items.length > 0 ? data.items[0].link : null;
         console.log(firstItemLink);
-        imageSearchElement.innerHTML = `<image class="displayImg" src="${firstItemLink}"</image>`
+        imageSearchElement.innerHTML = `<image class="displayImg" src="${firstItemLink}"</image> <div class="overlay"><span>${query}</span></div>`
         })
         .catch(error => console.error('Error fetching data:', error));
 }
