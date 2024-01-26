@@ -152,6 +152,8 @@ const plantData = {
     "monsoon forest": "Example: Sundarbans (India, Bangladesh)",
     "savanna": "Example: African Savanna"  
   };
+prevRandomY = -50;
+prevRandomX = -50;
   
 function randomizeWordsAndImages() {
     randomizedWords = ["randomizedAnimal", "randomizedPlant", "randomizedEnvironment"]
@@ -177,23 +179,31 @@ function randomizeWordsAndImages() {
     
 }
 function searchImages(query,imageElement){
-    const apiKey = 'AIzaSyDsLHNXn0J4FSvehCc6LVkJPG0FlY94enI';
-    const cx = '91f1d802f0741445b';
-
+    const apiKey = 'AIzaSyA2r9b2k80iK72s55Jxgx0ALmwNMSYeIu0';
+    const cx = '2135a8ac105674278';
+   
+    var randomY = Math.floor(Math.random() * 50);
+    var randomX = Math.floor(Math.random() * 80);
+    if ((randomY-prevRandomY) < 30 && (randomX-prevRandomX) < 30)
+    {
+        randomX = randomX + 30
+    }
+    prevRandomY =randomY;
+    prevRandomX = randomX;
     const apiUrl = `https://www.googleapis.com/customsearch/v1?q=${query}&key=${apiKey}&cx=${cx}&searchType=image`;
     
 
-    const imageSearchElement = document.getElementById(imageElement);
+    const imageSearchElement = document.getElementById(imageElement);    
 
     // Make a GET request to the API
     fetch(apiUrl) 
         .then(response => response.json())
         .then(data => {
         // Process the data here
-        const firstItemLink = data.items && data.items.length > 0 ? data.items[0].link : null;
-        console.log(firstItemLink);
-        imageSearchElement.innerHTML = `<image class="displayImg" src="${firstItemLink}"</image> <div class="overlay-text"><span>${query}</span></div>`
+        //const firstItemLink = data.items && data.items.length > 0 ? data.items[0].link : null;
+        imageSearchElement.innerHTML = `<image class="displayImg" style="top:${randomY}%; left:${randomX}%" src=""https://evfgxracv24.exactdn.com/wp-content/uploads/2021/02/franklinia-alatamaha_001.jpg?lossy=0"</image> <div class="overlay-text"><span>${query}</span></div>`
         })
         .catch(error => console.error('Error fetching data:', error));
+        
 }
  
