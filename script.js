@@ -152,8 +152,6 @@ const plantData = {
     "monsoon forest": "Example: Sundarbans (India, Bangladesh)",
     "savanna": "Example: African Savanna"  
   };
-prevRandomY = -50;
-prevRandomX = -50;
   
 function randomizeWordsAndImages() {
     randomizedWords = ["randomizedAnimal", "randomizedPlant", "randomizedEnvironment"]
@@ -167,7 +165,6 @@ function randomizeWordsAndImages() {
     {
         const randomElement = document.getElementById(randomizedWord);
         const randomArray = Object.entries(dataDict[randomizedWord]);
-        //console.log(randomArray);
         // Randomly select an item
         const randomIndex = Math.floor(Math.random() * randomArray.length);
         const randomEntry = randomArray[randomIndex];
@@ -197,7 +194,6 @@ function searchImages(query,imageElement){
         .then(data => {
         // Process the data here
         const firstItemLink = data.items && data.items.length > 0 ? data.items[0].link : null;
-        //imageSearchElement.innerHTML = `<image class="displayImg" style="top:${randomY}%; left:${randomX}%" src="${firstItemLink}</image> <div class="overlay-text"><span>${query}</span></div>`
         imageSearchElement.src=`${firstItemLink}`;
         imageSearchElement.style.offsetDistance =`${randomOffset}%`;
     })
