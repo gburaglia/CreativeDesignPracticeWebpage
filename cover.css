@@ -50,10 +50,12 @@ body {
   max-width: 42em;
 }
 
+/*
 .displayImg {
     width: 200px;
     height: auto;
 }
+*/
 
 
 /*
@@ -118,3 +120,26 @@ body {
   color: rgba(255, 255, 255, .5);
 }
 
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+
+}
+
+li {
+  height: 15vh;
+  flex-grow: 1;
+  max-height:100%;
+}
+li:first-child {
+  width: 100%;
+  max-height: 100%;
+}
+
+img {
+  max-height:125%;
+  min-width:100%;
+  object-fit: cover;
+  object-position: center;
+}

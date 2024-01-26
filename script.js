@@ -179,9 +179,10 @@ function randomizeWordsAndImages() {
 function searchImages(query,imageElement){
     const apiKey = 'AIzaSyDsLHNXn0J4FSvehCc6LVkJPG0FlY94enI';
     const cx = '91f1d802f0741445b';
-    //const query = 'cars';
 
-    const apiUrl = `https://www.googleapis.com/customsearch/v1?q=${query}&key=${apiKey}&cx=${cx}&searchType=image`;
+    const apiUrl = `https://www.googleapis.com/customsearch/v1?q=${query}&key=${apiKey}&cx=${cx}&searchType=image&imgColorType=trans`;
+    
+
     const imageSearchElement = document.getElementById(imageElement);
 
     // Make a GET request to the API
