@@ -177,8 +177,7 @@ function randomizeWordsAndImages() {
     
 }
 function searchImages(query,imageElement){
-    const apiKey = window.envVars.API_KEY;
-    console.log(apiKey);
+    const apiKey = 'AIzaSyDsLHNXn0J4FSvehCc6LVkJPG0FlY94enI';
     const cx = '91f1d802f0741445b';
     //const query = 'cars';
 
